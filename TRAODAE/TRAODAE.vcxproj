@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{4879DBC4-E469-45F4-AE2E-022E5652E5DF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>TRAODAE</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>D:\AoD\C++\VISUAL C++\TRAODAE\TRAODAE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="ANIM\CAL_Functions.h" />
+    <ClInclude Include="ANIM\CAL_Struct.h" />
+    <ClInclude Include="BLENDSHAPE\TMT_Functions.h" />
+    <ClInclude Include="BLENDSHAPE\TMT_Struct.h" />
+    <ClInclude Include="CHAR\CHR_Functions.h" />
+    <ClInclude Include="CHAR\CHR_Struct.h" />
+    <ClInclude Include="CHAR\Skeleton_Functions.h" />
+    <ClInclude Include="Classes.h" />
+    <ClInclude Include="FBX\FBX_Functions.h" />
+    <ClInclude Include="MATH\math_Functions.h" />
+    <ClInclude Include="MISC\concol.h" />
+    <ClInclude Include="MISC\hash_Functions.h" />
+    <ClInclude Include="MISC\UI_Functions.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ANIM\APB_BezierIDX.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="ANIM\APB_Combine_AnimLayers.cpp" />
+    <ClCompile Include="ANIM\APB_Disable_Scaling.cpp" />
+    <ClCompile Include="ANIM\APB_Fill_AnimationCurveData.cpp" />
+    <ClCompile Include="ANIM\APB_Fill_rotQuaternion.cpp" />
+    <ClCompile Include="ANIM\APB_HermiteFindBC.cpp" />
+    <ClCompile Include="ANIM\CAL_Get_Rquat_Keyframes_2.cpp" />
+    <ClCompile Include="ANIM\CAL_Get_TRS_Keyframes.cpp" />
+    <ClCompile Include="ANIM\CAL_Get_TRS_Keyframes_2.cpp" />
+    <ClCompile Include="ANIM\CAL_Read.cpp" />
+    <ClCompile Include="BLENDSHAPE\Calculate_Faces_Blendshape.cpp" />
+    <ClCompile Include="BLENDSHAPE\TMT_Read.cpp" />
+    <ClCompile Include="CHAR\Calculate_Faces_Mesh1.cpp" />
+    <ClCompile Include="CHAR\Calculate_Faces_Mesh2.cpp" />
+    <ClCompile Include="CHAR\Calculate_Hierarchy.cpp" />
+    <ClCompile Include="CHAR\Calculate_Parent.cpp" />
+    <ClCompile Include="CHAR\CHR_Export_Textures.cpp" />
+    <ClCompile Include="CHAR\CHR_Read_Materials.cpp" />
+    <ClCompile Include="CHAR\CHR_Read_Mesh1.cpp" />
+    <ClCompile Include="CHAR\CHR_Read_Mesh2.cpp" />
+    <ClCompile Include="CHAR\CHR_Read_Skeleton.cpp" />
+    <ClCompile Include="CHAR\Skeleton_Bone_S.cpp" />
+    <ClCompile Include="CHAR\Skeleton_Vertex_TS.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Animation.cpp" />
+    <ClCompile Include="FBX\FBX_Write_AnimCurve_Subroutine.cpp" />
+    <ClCompile Include="FBX\FBX_Write_BindPose.cpp" />
+    <ClCompile Include="FBX\FBX_Write_BindPose_Blendshape.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Blendshape.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Bone.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Connection_Animation.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Connection_Blendshape.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Connection_Bone.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Connection_Material.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Connection_Mesh1.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Connection_Mesh2.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Header.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Material.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Mesh1.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Mesh2.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Object_definitions.cpp" />
+    <ClCompile Include="FBX\FBX_Write_Texture.cpp" />
+    <ClCompile Include="FBX\nodeID.cpp" />
+    <ClCompile Include="MATH\mathMatrixToEuler.cpp" />
+    <ClCompile Include="MATH\mathMulMatrices.cpp" />
+    <ClCompile Include="MATH\mathMulQuaternions.cpp" />
+    <ClCompile Include="MATH\mathQuatNormalise.cpp" />
+    <ClCompile Include="MATH\mathQuatToMatrix.cpp" />
+    <ClCompile Include="MATH\mathRadToDeg.cpp" />
+    <ClCompile Include="MATH\mathRot.cpp" />
+    <ClCompile Include="MATH\mathRotX.cpp" />
+    <ClCompile Include="MATH\mathRotY.cpp" />
+    <ClCompile Include="MATH\mathRotZ.cpp" />
+    <ClCompile Include="MATH\mathWrapAngle180.cpp" />
+    <ClCompile Include="MISC\concol.cpp" />
+    <ClCompile Include="MISC\GetHashValue.cpp" />
+    <ClCompile Include="MISC\GetMeshName.cpp" />
+    <ClCompile Include="MISC\UI_Functions.cpp" />
+    <ClCompile Include="MISC\UI_Startup.cpp" />
+    <ClCompile Include="TRAODAE.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Icon.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Target Name="AfterCompile">
+    <Exec Command="if &quot;$(PlatformName)&quot; == &quot;AnyCPU&quot; (if &quot;$(ConfigurationName)&quot; == &quot;Release&quot; (powershell.exe  -ExecutionPolicy Bypass -File  &quot;$(ProjectDir)confuserEx\confuserps.ps1&quot; &quot;'C:\Users\Adriano\Documents\Visual Studio 2017\Confuser.CLI.exe'&quot; &quot;'$(ProjectDir)confuserEx\confuser.crproj'&quot; &quot;'$(ProjectDir)obj\$(ConfigurationName)\'&quot; &quot;'$(ProjectDir)obj\$(ConfigurationName)\$(TargetFileName)'&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)&quot;)&#xD;&#xA;) else (if &quot;$(ConfigurationName)&quot; == &quot;Release&quot; (powershell.exe  -ExecutionPolicy Bypass -File  &quot;$(ProjectDir)confuserEx\confuserps.ps1&quot; &quot;'C:\Users\Adriano\Documents\Visual Studio 2017\Confuser.CLI.exe'&quot; &quot;'$(ProjectDir)confuserEx\confuser.crproj'&quot; &quot;'$(ProjectDir)obj\$(PlatformName)\$(ConfigurationName)\'&quot; &quot;'$(ProjectDir)obj\$(PlatformName)\$(ConfigurationName)\$(TargetFileName)'&quot; &quot;$(ProjectDir)bin\$(PlatformName)\$(ConfigurationName)&quot;)&#xD;&#xA;)" />
+  </Target>
+</Project>

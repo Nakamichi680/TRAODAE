@@ -1,0 +1,62 @@
+TOMB RAIDER: THE ANGEL OF DARKNESS ANIMATION EXPORTER (by Nakamichi680)
+
+Per qualsiasi richiesta puoi contattarmi su http://www.aspidetr.com/forum/ o http://www.tombraiderforums.com/
+
+
+Versione: 1.1
+Data di rilascio: 11/03/2018
+Cosa c'è di nuovo:
+- Implementato il supporto per il root motion delle animazioni
+- Migliorato il supporto per alcuni materiali
+
+
+LICENZA E DICHIARAZIONE DI ESCLUSIONE DI RESPONSABILITA'
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You can find a copy of the GNU General Public License inside "GNU General Public License v3.txt".
+
+
+INTRODUZIONE
+Benvenuto in Tomb Raider – The Angel of Darkness Animation Exporter.
+
+Questo programma è progettato per esportare modelli tridimensionali riggati e texturizzati, animazioni e blend shapes
+dai file CHR, CAL e TMT.
+
+Prima di esaminare le istruzioni d'uso del programma è necessario fare una breve premessa sulla struttura dei file di gioco.
+
+Un file GMX è un archivio non compresso contenenente numerosi file, ognuno dei quali con una funzione particolare. Tre di
+questi file sono utilizzati per disegnare ed animare i personaggi nel gioco:
+	1) CHR: contiene lo scheletro, il modello riggato e le texture. Il modello tridimensionale è generalmente in
+		T-Pose (per i personaggi con aspetto umanoide) o in una posa neutra (per i personaggi non umanoidi come
+		cani, pipistrelli, ecc.).
+		I file CHR possono essere usati da soli per produrre splendidi, seppur statici, modelli tridimensionali di
+		un personaggio.
+		Tieni presente, tuttavia, che esistono due tipologie di file CHR: la prima, appena descritta, è valida per
+		tutti i personaggi viventi mentre la seconda, utilizzata per gli oggetti, ha una struttra differente e
+		non può essere esportata da TRAODAE.
+	2) CAL: contiene le animazioni. Dal momento che il file CAL memorizza solo dati grezzi sulle trasformazioni e
+		manca di uno scheletro, non può essere convertito in assenza del rispettivo file CHR. Per le rotazioni il file
+		fa uso di quaternioni. TRAODAE converte automaticamente i quaternioni in gradi euleriani per una maggiore
+		semplicità d'uso.
+	3) TMT: contiene i blend shapes. I blend shapes sono utilizzati per dare espressività ai personaggi durante le
+		cutscene e gli intermezzi interattivi tramite una alterazione della mesh di base del volto. I file TMT 
+		non hanno alcuna informazione riguardante i poligoni ma solo quelle riguardanti i vertici: per questa
+		ragione possono essere usati solo se accompagnati dal rispettivo CHR.
+
+ISTRUZIONI D'USO
+1) Metti i file che vuoi esportare in una cartella (non deve essere per forza la stessa di TRAODAE.EXE)
+2) Assicurati che tutti i file che vuoi esportare abbiano lo stesso nome (devono differire solo nell'estensione)
+3) Avvia TRAODAE utilizzando uno dei seguenti modi:
+	- Da Esplora Risorse di Windows: trascina e rilascia uno dei file che vuoi convertire su TRAODAE.EXE. Il programma
+	  esporterà il file selezionato e chiederà se si desidera esportare anche gli altri file presenti.
+
+	- Dal Prompt dei comandi: scrivi "TRAODAE [nome del file]". Se non specifichi l'estensione il programma cercherà
+	  eventuali file CHR/CAL/TMT con quel nome ed esporterà automaticamente tutto quanto. Se specifichi l'estensione il
+	  programma esporterà il file selezionato e chiederà se si desidera esportare anche gli altri file presenti.
+
+BUGS NOTI
+- Lo scheletro di alcuni personaggi potrebbe presentare errori nella gerarchia delle bones
+- Alcuni materiali non sono stati ancora implementati. I materiali sconosciuti sono esportati come Lambert con solo il canale diffuse.

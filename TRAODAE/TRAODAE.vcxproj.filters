@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="File di origine">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="File di risorse">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="File di origine\math">
+      <UniqueIdentifier>{2fc68c56-2ff7-4857-a173-f37f6abdfbdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\anim">
+      <UniqueIdentifier>{f237e749-07bc-46a5-9928-77a361d132a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\fbx">
+      <UniqueIdentifier>{530b539d-5fe4-48a3-891b-45f66ba83a30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\char">
+      <UniqueIdentifier>{ae416892-2192-4e4f-9721-51347ecfc498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\blendshape">
+      <UniqueIdentifier>{efb07ea8-117c-4ea9-93dd-5dc1c157c037}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="ANIM\CAL_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="ANIM\CAL_Struct.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="BLENDSHAPE\TMT_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="BLENDSHAPE\TMT_Struct.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="CHAR\CHR_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="CHAR\CHR_Struct.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="CHAR\Skeleton_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX\FBX_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="MATH\math_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="MISC\concol.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="MISC\hash_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="MISC\UI_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TRAODAE.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\APB_BezierIDX.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\APB_Combine_AnimLayers.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\APB_Disable_Scaling.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\APB_Fill_AnimationCurveData.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\APB_Fill_rotQuaternion.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\APB_HermiteFindBC.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\CAL_Get_Rquat_Keyframes_2.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\CAL_Get_TRS_Keyframes.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\CAL_Get_TRS_Keyframes_2.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="ANIM\CAL_Read.cpp">
+      <Filter>File di origine\anim</Filter>
+    </ClCompile>
+    <ClCompile Include="BLENDSHAPE\Calculate_Faces_Blendshape.cpp">
+      <Filter>File di origine\blendshape</Filter>
+    </ClCompile>
+    <ClCompile Include="BLENDSHAPE\TMT_Read.cpp">
+      <Filter>File di origine\blendshape</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\Calculate_Faces_Mesh1.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\Calculate_Faces_Mesh2.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\Calculate_Hierarchy.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\Calculate_Parent.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\CHR_Export_Textures.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\CHR_Read_Materials.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\CHR_Read_Mesh1.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\CHR_Read_Mesh2.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\CHR_Read_Skeleton.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\Skeleton_Bone_S.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="CHAR\Skeleton_Vertex_TS.cpp">
+      <Filter>File di origine\char</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Animation.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_AnimCurve_Subroutine.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_BindPose.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_BindPose_Blendshape.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Blendshape.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Bone.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Connection_Animation.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Connection_Blendshape.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Connection_Bone.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Connection_Material.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Connection_Mesh1.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Connection_Mesh2.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Header.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Material.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Mesh1.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Mesh2.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Object_definitions.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\FBX_Write_Texture.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX\nodeID.cpp">
+      <Filter>File di origine\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathMatrixToEuler.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathMulMatrices.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathMulQuaternions.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathQuatNormalise.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathQuatToMatrix.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathRadToDeg.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathRot.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathRotX.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathRotY.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathRotZ.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MATH\mathWrapAngle180.cpp">
+      <Filter>File di origine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="MISC\concol.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="MISC\GetHashValue.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="MISC\GetMeshName.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="MISC\UI_Functions.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="MISC\UI_Startup.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Icon.rc">
+      <Filter>File di risorse</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
