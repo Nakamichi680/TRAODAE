@@ -28,7 +28,7 @@ public:
 	TCHAR Console_OldTitle[MAX_PATH];
 	LPCWSTR Console_NewTitle = L"Tomb Raider - The Angel of Darkness Animation Exporter  (by Nakamichi680)";
 	LPWSTR folder_exe_lpwstr = new TCHAR[MAX];			// Cartella in cui si trova il programma
-	LPWSTR folder_chr_lpwstr = new TCHAR[MAX];			// Cartella in cui si trovano i file CHR/CAL/TMT
+	LPWSTR folder_chr_lpwstr = new TCHAR[MAX];			// Cartella in cui si trovano i file CHR/CAL/TMT/POS
 	LPWSTR folder_fbx_lpwstr = new TCHAR[MAX];			// Cartella in cui verranno creati i file FBX e le textures
 	LPWSTR folder_ani_lpwstr () {
 		LPWSTR temp_lpwstr = new TCHAR[MAX];
@@ -58,12 +58,15 @@ public:
 	string CHR;											// Stringa contenente il nome del file CHR con estensione
 	string CAL;											// Stringa contenente il nome del file CAL con estensione
 	string TMT;											// Stringa contenente il nome del file TMT con estensione
+	string POS;											// Stringa contenente il nome del file POS con estensione
 	bool CHR_exists = false;
 	bool CAL_exists = false;
 	bool TMT_exists = false;
+	bool POS_exists = false;
 	bool Export_CHR = false;
 	bool Export_CAL = false;
 	bool Export_TMT = false;
+	bool Export_POS = false;
 };
 
 
@@ -106,6 +109,7 @@ public:
 class Animation_info {
 public:
     char name[64];										// Il nome dell'animazione
+	unsigned int Name_hashed;							// Hash del nome dell'animazione
     unsigned int Pointer_h;								// Dove inizia l'header dell'animazione
     unsigned int Pointer_r;								// Dove inizia il blocco dati dell'animazione
     unsigned int nBones;								// Numero di bones
@@ -278,6 +282,20 @@ public:
 		transform(out.begin(), out.end(), out.begin(), ::tolower);
 		return out;
 	};
+};
+
+
+class POS_CLASS {
+public:
+	string name;
+	string TMS_name;
+	unsigned int Animation_hashed;
+	unsigned int Blendshape_hashed;
+	unsigned int nFrames = 0;
+	vector <float> X_trasl;
+	vector <float> Y_trasl;
+	vector <float> Z_trasl;
+	vector <float> W_trasl;
 };
 
 

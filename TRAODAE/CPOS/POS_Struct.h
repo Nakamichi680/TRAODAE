@@ -30,9 +30,9 @@ struct POS_ANIM_HEADER
 {
     uint32_t Name_lenght;			// Lunghezza in byte della stringa del nome
 	string Name;					// Nome del personaggio del blocco dati
-	uint32_t Unknown1;
-	uint32_t Unknown2;
-	uint32_t Unknown3;
+	uint32_t Name_hashed;			// Hash del nome
+	uint32_t Animation_hashed;		// Hash del nome dell'animazione collegata (dal file CAL)
+	uint32_t Blendshape_hashed;		// Hash del nome del blendshape collegato (dal file TMS)
     uint32_t TMS_Name_lenght;		// Lunghezza in byte della stringa del nome del file TMS
 	string TMS_Name;				// Nome del file TMS
 	uint32_t nFrames;				// Numero di frames - 1 dell'animazione

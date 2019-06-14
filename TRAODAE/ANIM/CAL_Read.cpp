@@ -80,8 +80,10 @@ void CAL_Read (ifstream &calfile, vector <Animation_info> &Ani_header, vector < 
         calfile.seekg(Ani_header[a].Pointer_h);
         calfile.read(reinterpret_cast<char*>(&Ani_header[a].name), sizeof(cal_anim_header.Name));							// Nome animazione
         calfile.read(reinterpret_cast<char*>(&Ani_header[a].Pointer_r), sizeof(cal_anim_header.Anim_raw_header_offset));	// Offset dati raw
-        calfile.seekg(36, ios_base::cur);
-        calfile.read(reinterpret_cast<char*>(&Ani_header[a].nFrames), sizeof(cal_anim_header.nFrames));						// Numero di frames dell'animazione
+        calfile.seekg(28, ios_base::cur);
+		calfile.read(reinterpret_cast<char*>(&Ani_header[a].Name_hashed), sizeof(cal_anim_header.Name_hashed));				// Hash del nome dell'animazione
+        calfile.seekg(4, ios_base::cur);
+		calfile.read(reinterpret_cast<char*>(&Ani_header[a].nFrames), sizeof(cal_anim_header.nFrames));						// Numero di frames dell'animazione
         calfile.read(reinterpret_cast<char*>(&Ani_header[a].nBones), sizeof(cal_anim_header.nBones));						// Numero di bones controllate dall'animazione
         Ani_curvenode[a].resize(Ani_header[a].nBones);		// Ridimensiona il vettore in base al numero di bones da accogliere
         calfile.seekg(Ani_header[a].Pointer_r);

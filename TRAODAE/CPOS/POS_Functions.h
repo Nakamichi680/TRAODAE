@@ -19,8 +19,8 @@ Copyright (c) Square Enix Ltd. Lara Croft and Tomb Raider are trademarks or regi
 #include "Classes.h"
 
 
-// Legge il file dei blend shapes (vertici, normals, UVs)
-bool TMT_Read(ifstream &tmtfile, TMT_CLASS &tmt, vector <MESH2_CLASS> &mesh2, vector <matrix4x4> &SKquat, vector <Material> &Materials, IO_CLASS IO);
+// Legge il file CPOS (contiene le informazioni di traslazione dei personaggi durante le cutscenes)
+bool POS_Read (ifstream &posfile, vector <POS_CLASS> &pos, IO_CLASS IO);
 
-// Conversione strip del gruppo MESH 2 associato al blendshape in facce esplicite, senza mantenere la suddivisione in elementi
-void Calculate_Faces_Blendshape (TMT_CLASS &tmt, vector <MESH2_CLASS> &mesh2, vector <int> &BLENDSHAPE_FACES);
+// Chiede quale POS applicare al layer di animazioni ed effettua l'operazione
+void POS_ApplyTransToAnimLayer (vector <POS_CLASS> &pos, vector <Animation_info> &Ani_header, vector < vector <AnimationCurveNode> > &Ani_curvenode);

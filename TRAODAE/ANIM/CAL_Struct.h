@@ -46,7 +46,7 @@ struct CAL_ANIM_HEADER
     uint32_t Unknown5;			// dovrebbe essere un puntatore
     uint32_t Unknown6;			// dovrebbe essere un puntatore
     uint32_t Unknown7;
-    uint32_t Hashed_name;                   // Hash del nome dell'animazione
+    uint32_t Name_hashed;					// Hash del nome dell'animazione
     uint32_t Unknown8;
     uint32_t nFrames;                       // Numero di frames dell'animazione
     uint32_t nBones;                        // Numero di pointers presenti all'inizio del gruppo data RAW (sarebbe il numero di Bones)

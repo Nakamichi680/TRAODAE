@@ -78,6 +78,9 @@
     <ClInclude Include="CPOS\POS_Struct.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="CPOS\POS_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TRAODAE.cpp">

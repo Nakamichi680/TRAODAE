@@ -25,6 +25,7 @@ and/or affiliates in the USA and other countries.*/
 #include "ANIM/CAL_Functions.h"
 #include "CHAR/CHR_Functions.h"
 #include "BLENDSHAPE/TMT_Functions.h"
+#include "CPOS/POS_Functions.h"
 #include "FBX/FBX_Functions.h"
 
 
@@ -34,7 +35,7 @@ int main(int argc, char **argv)
 	CHR_HEADER chr_header;
 	CHR_MESH2_LIST chr_mesh2_list;
 	FBX_COUNT_CLASS CAL_FBX_Count, TMT_FBX_Count, CHR_FBX_Count;		// Contatori per i nodi dei file FBX 
-	ifstream chrfile, calfile, tmtfile;									// Stream di lettura dei file CHR/CAL/TMT
+	ifstream chrfile, calfile, tmtfile, posfile;						// Stream di lettura dei file CHR/CAL/TMT/POS
 	ofstream out;														// Stream di output per i file FBX
 	unsigned int Nlambert, Nphong;										// Contatori del numero di materiali Lambert e Phong che vengono progressivamente scritti
 

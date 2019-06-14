@@ -17,108 +17,57 @@ Copyright (c) Square Enix Ltd. Lara Croft and Tomb Raider are trademarks or regi
 
 /*------------------------------------------------------------------------------------------------------------------
 Legge il file POS contenente le traslazioni dei personaggi durante le cutscenes
-INPUT: 
-OUTPUT: 
+INPUT: ifstream &posfile, IO_CLASS IO
+OUTPUT: vector <POS_CLASS> &pos
 ------------------------------------------------------------------------------------------------------------------*/
 
 #include "stdafx.h"
 #include "CPOS/POS_Struct.h"
-//#include "MISC/concol.h"
-//#include "BLENDSHAPE/TMT_Struct.h"
-//#include "Classes.h"
-//#include "MISC/hash_Functions.h"
-//#include "CHAR/Skeleton_Functions.h"
-//#include "MISC/UI_Functions.h"
+#include "Classes.h"
+#include "MISC/UI_Functions.h"
 
 
-bool POS_Read(ifstream &tmtfile, TMT_CLASS &tmt, vector <MESH2_CLASS> &mesh2, vector <matrix4x4> &SKquat, vector <Material> &Materials, IO_CLASS IO)
+bool POS_Read (ifstream &posfile, vector <POS_CLASS> &pos, IO_CLASS IO)
 {
-	TMT_HEADER tmt_header;
-	TMT_DATA tmt_data;
+	POS_HEADER pos_header;
+	POS_ANIM_HEADER pos_anim_header;
+	POS_RAW_DATA pos_raw_data;
 
-	tmtfile.read(reinterpret_cast<char*>(&tmt_header.TMT_MAGIC), sizeof(tmt_header.TMT_MAGIC));						// Legge l'ID del file ("MPHB")
+	posfile.read(reinterpret_cast<char*>(&pos_header.POS_MAGIC), sizeof(pos_header.POS_MAGIC));						// Legge l'ID del file ("CPOS")
 
-	if (tmt_header.TMT_MAGIC != 1112035405)			// Se il file non inizia con "MPHB" l'estrazione dei blend shapes termina
+	if (pos_header.POS_MAGIC != 1397706819)			// Se il file non inizia con "CPOS" l'estrazione delle traslazioni termina
 	{
-		UI_Display_Error(false, IO.TMT, " is not a valid TMT file. Blend Shapes will not be exported.");
+		UI_Display_Error(false, IO.POS, " is not a valid POS file. Cutscene translations will not be exported.");
 		return false;
 	}
 	else											// Se il file è valido
 	{
-		tmtfile.seekg(8, ios_base::cur);
-		tmtfile.read(reinterpret_cast<char*>(&tmt_header.Linked_mesh_hash), sizeof(tmt_header.Linked_mesh_hash));	// Legge l'hash della mesh associata
-		tmtfile.read(reinterpret_cast<char*>(&tmt.nBlendshapes), sizeof(tmt_header.nBlendshapes));					// Legge il numero di blendshapes
-		tmtfile.read(reinterpret_cast<char*>(&tmt.nV), sizeof(tmt_header.nVertices));								// Legge il numero di vertici
-		tmtfile.seekg(8, ios_base::cur);
+		posfile.seekg(4, ios_base::cur);
+		posfile.read(reinterpret_cast<char*>(&pos_header.nCHARS), sizeof(pos_header.nCHARS));						// Legge il numero di personaggi
+		pos.resize(pos_header.nCHARS);
 
-		tmt.name = GetMeshName(tmt_header.Linked_mesh_hash, &tmt.hashed);
-		
-		// Ricerca gruppo 2 associato al blendshape
-		for (unsigned int g = 0; g < mesh2.size(); g++)
-			if (mesh2[g].name == tmt.name)			// Se trova un gruppo MESH 2 con nome uguale
-			{
-				if (mesh2[g].nV != tmt.nV)			// Se il numero di vertici non combacia l'estrazione dei blend shapes termina
-				{
-					UI_Display_Error(false, "", "CHR/TMT vertex count mismatch. Blend Shapes will not be exported.");
-					return false;
-				}
-				tmt.mesh2_group = g;
-				tmt.mesh2_bone = mesh2[g].Bone;
-				// Ricerca dell'elemento con più facce. Il materiale verrà preso da questo elemento
-				int material_ref = distance(mesh2[g].arrEl_Ind.begin(), max_element(mesh2[g].arrEl_Ind.begin(), mesh2[g].arrEl_Ind.end()));
-				tmt.TMT_Material.Number = material_ref;
-				tmt.TMT_Material.Type = 4;											// La tipologia di materiale è forzata a "Diffuse" (4)
-				tmt.TMT_Material.Diffuse = Materials[material_ref].Diffuse;
-			}
-		// Ridimensionamento vettori 
-		tmt.BLENDSHAPE_vINDX.resize(tmt.nBlendshapes+1);
-		tmt.X.resize(tmt.nBlendshapes + 1);
-		tmt.Y.resize(tmt.nBlendshapes + 1);
-		tmt.Z.resize(tmt.nBlendshapes + 1);
-		tmt.Xn.resize(tmt.nBlendshapes + 1);
-		tmt.Yn.resize(tmt.nBlendshapes + 1);
-		tmt.Zn.resize(tmt.nBlendshapes + 1);
-		tmt.U.resize(tmt.nBlendshapes + 1);
-		tmt.V.resize(tmt.nBlendshapes + 1);
-
-		// Lettura dati
-		for (unsigned int v = 0; v < tmt.nV; v++)
+		// Ogni ciclo legge un layer di traslazioni del personaggio
+		for (unsigned int c = 0; c < pos_header.nCHARS; c++)
 		{
-			int P = -1;
-			if (v == tmt.nV - 1)
-				P = 0;
-			if (v % 8 == 0 || v == tmt.nV - 1)			// Disegna la barra ogni 8 vertici (per velocizzare il processo)
-				UI_ProgressBar(v, tmt.nV, 45, " Reading Blend Shapes...                       ", P, 1);
+			posfile.read(reinterpret_cast<char*>(&pos_anim_header.Name_lenght), sizeof(pos_anim_header.Name_lenght));
+			posfile.read(reinterpret_cast<char*>(&pos[c].name), pos_anim_header.Name_lenght);
+			posfile.read(reinterpret_cast<char*>(&pos_anim_header.Name_hashed), sizeof(pos_anim_header.Name_hashed));
+			posfile.read(reinterpret_cast<char*>(&pos[c].Animation_hashed), sizeof(pos_anim_header.Animation_hashed));
+			posfile.read(reinterpret_cast<char*>(&pos[c].Blendshape_hashed), sizeof(pos_anim_header.Blendshape_hashed));
+			posfile.read(reinterpret_cast<char*>(&pos_anim_header.TMS_Name_lenght), sizeof(pos_anim_header.TMS_Name_lenght));
+			posfile.read(reinterpret_cast<char*>(&pos[c].TMS_name), pos_anim_header.TMS_Name_lenght);
+			posfile.read(reinterpret_cast<char*>(&pos[c].nFrames), sizeof(pos_anim_header.nFrames));
+			pos[c].X_trasl.resize(pos_anim_header.nFrames + 1);
+			pos[c].Y_trasl.resize(pos_anim_header.nFrames + 1);
+			pos[c].Z_trasl.resize(pos_anim_header.nFrames + 1);
+			pos[c].W_trasl.resize(pos_anim_header.nFrames + 1);
 
-			for (unsigned int n = 0; n <= tmt.nBlendshapes; n++)
+			for (unsigned int f = 0; f < pos[c].nFrames + 1; f++)
 			{
-				tmtfile.read(reinterpret_cast<char*>(&tmt_data.X), sizeof(tmt_data.X));								// Lettura X
-				tmtfile.read(reinterpret_cast<char*>(&tmt_data.Y), sizeof(tmt_data.Y));								// Lettura Y
-				tmtfile.read(reinterpret_cast<char*>(&tmt_data.Z), sizeof(tmt_data.Z));								// Lettura Z
-				tmtfile.read(reinterpret_cast<char*>(&tmt_data.Xn), sizeof(tmt_data.Xn));							// Lettura normal X
-				tmtfile.read(reinterpret_cast<char*>(&tmt_data.Yn), sizeof(tmt_data.Yn));							// Lettura normal Y
-				tmtfile.read(reinterpret_cast<char*>(&tmt_data.Zn), sizeof(tmt_data.Zn));							// Lettura normal Z
-				tmtfile.read(reinterpret_cast<char*>(&tmt_data.U), sizeof(tmt_data.U));								// Lettura coordinata U texture
-				tmtfile.read(reinterpret_cast<char*>(&tmt_data.V), sizeof(tmt_data.V));								// Lettura coordinata V texture
-				
-				if (n == 0)		// Se il blendshape è il numero 0 (mesh normale) vengono copiati tutti i valori
-				{
-					tmt.X[n].push_back(tmt_data.X);				tmt.Y[n].push_back(tmt_data.Y);				tmt.Z[n].push_back(tmt_data.Z);
-					tmt.Xn[n].push_back(tmt_data.Xn);			tmt.Yn[n].push_back(tmt_data.Yn);			tmt.Zn[n].push_back(tmt_data.Zn);
-					tmt.U[n].push_back(tmt_data.U);				tmt.V[n].push_back(tmt_data.V);
-
-					Skeleton_Vertex_TS(&tmt.X[n][v], &tmt.Y[n][v], &tmt.Z[n][v], SKquat[tmt.mesh2_bone]);			//APPLICAZIONE COORDINATE BONES AI VERTICI
-				}
-				else			// Se si tratta di un blendshape vero e proprio vengono copiati tutti i valori solo se almeno uno di essi differisce dalla mesh normale
-					if (tmt_data.X != 0 || tmt_data.Y != 0 || tmt_data.Z != 0 ||
-						tmt_data.Xn != 0 || tmt_data.Yn != 0 || tmt_data.Zn != 0 ||
-						tmt_data.U != tmt.U[0][v] || tmt_data.V != tmt.V[0][v])
-					{
-						tmt.BLENDSHAPE_vINDX[n].push_back(v);
-						tmt.X[n].push_back(tmt_data.X);				tmt.Y[n].push_back(tmt_data.Y);				tmt.Z[n].push_back(tmt_data.Z);
-						tmt.Xn[n].push_back(tmt_data.Xn);			tmt.Yn[n].push_back(tmt_data.Yn);			tmt.Zn[n].push_back(tmt_data.Zn);
-						tmt.U[n].push_back(tmt_data.U);				tmt.V[n].push_back(tmt_data.V);
-					}
+				posfile.read(reinterpret_cast<char*>(&pos[c].X_trasl[f]), sizeof(pos_raw_data.X_trasl));
+				posfile.read(reinterpret_cast<char*>(&pos[c].Y_trasl[f]), sizeof(pos_raw_data.Y_trasl));
+				posfile.read(reinterpret_cast<char*>(&pos[c].Z_trasl[f]), sizeof(pos_raw_data.Z_trasl));
+				posfile.read(reinterpret_cast<char*>(&pos[c].W_trasl[f]), sizeof(pos_raw_data.W_trasl));
 			}
 		}
 	}
