@@ -146,6 +146,7 @@
     <ClInclude Include="CHAR\CHR_Struct.h" />
     <ClInclude Include="CHAR\Skeleton_Functions.h" />
     <ClInclude Include="Classes.h" />
+    <ClInclude Include="CPOS\POS_Struct.h" />
     <ClInclude Include="FBX\FBX_Functions.h" />
     <ClInclude Include="MATH\math_Functions.h" />
     <ClInclude Include="MISC\concol.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="CHAR\CHR_Read_Skeleton.cpp" />
     <ClCompile Include="CHAR\Skeleton_Bone_S.cpp" />
     <ClCompile Include="CHAR\Skeleton_Vertex_TS.cpp" />
+    <ClCompile Include="CPOS\POS_Read.cpp" />
     <ClCompile Include="FBX\FBX_Write_Animation.cpp" />
     <ClCompile Include="FBX\FBX_Write_AnimCurve_Subroutine.cpp" />
     <ClCompile Include="FBX\FBX_Write_BindPose.cpp" />

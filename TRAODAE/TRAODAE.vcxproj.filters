@@ -28,6 +28,9 @@
     <Filter Include="File di origine\blendshape">
       <UniqueIdentifier>{efb07ea8-117c-4ea9-93dd-5dc1c157c037}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di origine\cpos">
+      <UniqueIdentifier>{0c3b7cff-6479-4b0c-bc48-c6f26a454441}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -70,6 +73,9 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="MISC\UI_Functions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="CPOS\POS_Struct.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
@@ -250,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="MISC\UI_Startup.cpp">
       <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="CPOS\POS_Read.cpp">
+      <Filter>File di origine\cpos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
