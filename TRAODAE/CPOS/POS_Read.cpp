@@ -37,7 +37,7 @@ bool POS_Read (ifstream &posfile, vector <POS_CLASS> &pos, IO_CLASS IO)
 
 	if (pos_header.POS_MAGIC != 1397706819)			// Se il file non inizia con "CPOS" l'estrazione delle traslazioni termina
 	{
-		UI_Display_Error(false, IO.POS, " is not a valid POS file. Cutscene translations will not be exported.");
+		UI_Display_Error(false, IO.POS, " is not a valid POS file. Cutscene character root motion will not be exported.");
 		return false;
 	}
 	else											// Se il file è valido
@@ -49,25 +49,53 @@ bool POS_Read (ifstream &posfile, vector <POS_CLASS> &pos, IO_CLASS IO)
 		// Ogni ciclo legge un layer di traslazioni del personaggio
 		for (unsigned int c = 0; c < pos_header.nCHARS; c++)
 		{
+			UI_ProgressBar(c, pos_header.nCHARS, 45, " Reading cutscene character root motion...     ");
 			posfile.read(reinterpret_cast<char*>(&pos_anim_header.Name_lenght), sizeof(pos_anim_header.Name_lenght));
-			posfile.read(reinterpret_cast<char*>(&pos[c].name), pos_anim_header.Name_lenght);
+			posfile.seekg(pos_anim_header.Name_lenght, ios_base::cur);
 			posfile.read(reinterpret_cast<char*>(&pos_anim_header.Name_hashed), sizeof(pos_anim_header.Name_hashed));
 			posfile.read(reinterpret_cast<char*>(&pos[c].Animation_hashed), sizeof(pos_anim_header.Animation_hashed));
 			posfile.read(reinterpret_cast<char*>(&pos[c].Blendshape_hashed), sizeof(pos_anim_header.Blendshape_hashed));
 			posfile.read(reinterpret_cast<char*>(&pos_anim_header.TMS_Name_lenght), sizeof(pos_anim_header.TMS_Name_lenght));
-			posfile.read(reinterpret_cast<char*>(&pos[c].TMS_name), pos_anim_header.TMS_Name_lenght);
+			posfile.seekg(pos_anim_header.TMS_Name_lenght, ios_base::cur);
 			posfile.read(reinterpret_cast<char*>(&pos[c].nFrames), sizeof(pos_anim_header.nFrames));
-			pos[c].X_trasl.resize(pos_anim_header.nFrames + 1);
-			pos[c].Y_trasl.resize(pos_anim_header.nFrames + 1);
-			pos[c].Z_trasl.resize(pos_anim_header.nFrames + 1);
-			pos[c].W_trasl.resize(pos_anim_header.nFrames + 1);
+			pos[c].nFrames++;									// Il numero di frames va aumentato di 1 perchè il file POS inizia a contare da 0
+			pos[c].Cutscene_Root_Motion.tX_flag = true;
+			pos[c].Cutscene_Root_Motion.tY_flag = true;
+			pos[c].Cutscene_Root_Motion.tZ_flag = true;
 
-			for (unsigned int f = 0; f < pos[c].nFrames + 1; f++)
+			for (unsigned int f = 0; f < pos[c].nFrames; f++)
 			{
-				posfile.read(reinterpret_cast<char*>(&pos[c].X_trasl[f]), sizeof(pos_raw_data.X_trasl));
-				posfile.read(reinterpret_cast<char*>(&pos[c].Y_trasl[f]), sizeof(pos_raw_data.Y_trasl));
-				posfile.read(reinterpret_cast<char*>(&pos[c].Z_trasl[f]), sizeof(pos_raw_data.Z_trasl));
-				posfile.read(reinterpret_cast<char*>(&pos[c].W_trasl[f]), sizeof(pos_raw_data.W_trasl));
+				posfile.read(reinterpret_cast<char*>(&pos_raw_data.X_trasl), sizeof(pos_raw_data.X_trasl));
+				posfile.read(reinterpret_cast<char*>(&pos_raw_data.Y_trasl), sizeof(pos_raw_data.Y_trasl));
+				posfile.read(reinterpret_cast<char*>(&pos_raw_data.Z_trasl), sizeof(pos_raw_data.Z_trasl));
+				posfile.read(reinterpret_cast<char*>(&pos_raw_data.W_trasl), sizeof(pos_raw_data.W_trasl));
+				
+				// Traslazione X
+				pos[c].Cutscene_Root_Motion.tX.KeyTime.push_back((unsigned long long)f * FBXframe1 + FBXframe1);	// Tempo
+				pos[c].Cutscene_Root_Motion.tX.KeyValueFloat.push_back(pos_raw_data.X_trasl);						// Valore frame
+				pos[c].Cutscene_Root_Motion.tX.KeyAttrFlags.push_back(24840);										// Cubic|TangeantAuto|GenericTimeIndependent|GenericClampProgressive
+				pos[c].Cutscene_Root_Motion.tX.KeyAttrDataFloat.push_back(0);										// RightSlope:0
+				pos[c].Cutscene_Root_Motion.tX.KeyAttrDataFloat.push_back(0);										// NextLeftSlope:0
+				pos[c].Cutscene_Root_Motion.tX.KeyAttrDataFloat.push_back(218434821);								// RightWeight:0.333333, NextLeftWeight:0.333333
+				pos[c].Cutscene_Root_Motion.tX.KeyAttrDataFloat.push_back(0);
+
+				// Traslazione Y
+				pos[c].Cutscene_Root_Motion.tY.KeyTime.push_back((unsigned long long)f * FBXframe1 + FBXframe1);	// Tempo
+				pos[c].Cutscene_Root_Motion.tY.KeyValueFloat.push_back(pos_raw_data.Y_trasl);						// Valore frame
+				pos[c].Cutscene_Root_Motion.tY.KeyAttrFlags.push_back(24840);										// Cubic|TangeantAuto|GenericTimeIndependent|GenericClampProgressive
+				pos[c].Cutscene_Root_Motion.tY.KeyAttrDataFloat.push_back(0);										// RightSlope:0
+				pos[c].Cutscene_Root_Motion.tY.KeyAttrDataFloat.push_back(0);										// NextLeftSlope:0
+				pos[c].Cutscene_Root_Motion.tY.KeyAttrDataFloat.push_back(218434821);								// RightWeight:0.333333, NextLeftWeight:0.333333
+				pos[c].Cutscene_Root_Motion.tY.KeyAttrDataFloat.push_back(0);
+
+				// Traslazione Z
+				pos[c].Cutscene_Root_Motion.tZ.KeyTime.push_back((unsigned long long)f * FBXframe1 + FBXframe1);	// Tempo
+				pos[c].Cutscene_Root_Motion.tZ.KeyValueFloat.push_back(pos_raw_data.Z_trasl);						// Valore frame
+				pos[c].Cutscene_Root_Motion.tZ.KeyAttrFlags.push_back(24840);										// Cubic|TangeantAuto|GenericTimeIndependent|GenericClampProgressive
+				pos[c].Cutscene_Root_Motion.tZ.KeyAttrDataFloat.push_back(0);										// RightSlope:0
+				pos[c].Cutscene_Root_Motion.tZ.KeyAttrDataFloat.push_back(0);										// NextLeftSlope:0
+				pos[c].Cutscene_Root_Motion.tZ.KeyAttrDataFloat.push_back(218434821);								// RightWeight:0.333333, NextLeftWeight:0.333333
+				pos[c].Cutscene_Root_Motion.tZ.KeyAttrDataFloat.push_back(0);
 			}
 		}
 	}

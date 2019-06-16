@@ -47,4 +47,4 @@ AnimationCurveData CAL_Get_TRS_Keyframes (ifstream &calfile, unsigned int nFrame
 AnimationCurveData CAL_Get_TRS_Keyframes_2 (ifstream &calfile, unsigned int nFrames, float correction_factor);
 
 // Lettura file CAL
-void CAL_Read (ifstream &calfile, vector <Animation_info> &Ani_header, vector < vector <AnimationCurveNode> > &Ani_curvenode);
+void CAL_Read (ifstream &calfile, vector <Animation_info> &Ani_header, vector < vector <AnimationCurveNode> > &Ani_curvenode, bool Export_POS);

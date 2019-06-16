@@ -287,15 +287,10 @@ public:
 
 class POS_CLASS {
 public:
-	string name;
-	string TMS_name;
 	unsigned int Animation_hashed;
 	unsigned int Blendshape_hashed;
 	unsigned int nFrames = 0;
-	vector <float> X_trasl;
-	vector <float> Y_trasl;
-	vector <float> Z_trasl;
-	vector <float> W_trasl;
+	AnimationCurveNode Cutscene_Root_Motion;
 };
 
 

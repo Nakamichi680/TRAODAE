@@ -127,13 +127,36 @@ int main(int argc, char **argv)
 		calfile.open(IO.CAL, std::ios::binary);													// Apre il file CAL
 		if (calfile.is_open())
 		{
-			CAL_Read(calfile, Ani_header, Ani_curvenode);
+			CAL_Read(calfile, Ani_header, Ani_curvenode, IO.Export_POS);
 			calfile.close();
 		}
 		else
 		{
 			UI_Display_Error(false, IO.CAL, " not found. Animations will not be exported.");	// Mostra il messaggio di errore se manca il file
 			IO.Export_CAL = false;																// Se il file CAL è assente le animazioni non vengono esportate
+		}
+	}
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	/////////////////////////////////////////////////////////		 INIZIO LETTURA FILE POS	     ///////////////////////////////////////////////////////////
+	if (IO.Export_POS)																			// Controlla se l'esportazione del file POS è stata selezionata
+	{
+		if (!IO.Export_CAL)
+			UI_Display_Error(false, "", "Unable to export cutscene character root motion without animations.");	// Mostra il messaggio di errore se manca il file delle animazioni
+		else
+		{
+			posfile.open(IO.POS, std::ios::binary);													// Apre il file POS
+			if (posfile.is_open())
+			{
+				vector <POS_CLASS> pos;
+				IO.Export_POS = POS_Read(posfile, pos, IO);
+				posfile.close();
+				if (IO.Export_POS)
+					POS_ApplyTransToAnimLayer(pos, Ani_header, Ani_curvenode);
+			}
+			else
+				UI_Display_Error(false, IO.POS, " not found. Cutscene character root motion will not be exported.");	// Mostra il messaggio di errore se manca il file
 		}
 	}
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

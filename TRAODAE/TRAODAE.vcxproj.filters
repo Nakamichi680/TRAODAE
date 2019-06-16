@@ -25,11 +25,11 @@
     <Filter Include="File di origine\char">
       <UniqueIdentifier>{ae416892-2192-4e4f-9721-51347ecfc498}</UniqueIdentifier>
     </Filter>
-    <Filter Include="File di origine\blendshape">
-      <UniqueIdentifier>{efb07ea8-117c-4ea9-93dd-5dc1c157c037}</UniqueIdentifier>
-    </Filter>
     <Filter Include="File di origine\cpos">
       <UniqueIdentifier>{0c3b7cff-6479-4b0c-bc48-c6f26a454441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\blendshape">
+      <UniqueIdentifier>{efb07ea8-117c-4ea9-93dd-5dc1c157c037}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +261,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="CPOS\POS_Read.cpp">
+      <Filter>File di origine\cpos</Filter>
+    </ClCompile>
+    <ClCompile Include="CPOS\POS_ApplyTransToAnimLayer.cpp">
       <Filter>File di origine\cpos</Filter>
     </ClCompile>
   </ItemGroup>

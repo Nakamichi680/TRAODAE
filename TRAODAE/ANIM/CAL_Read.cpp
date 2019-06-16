@@ -19,7 +19,7 @@ and/or affiliates in the USA and other countries.*/
 
 /*------------------------------------------------------------------------------------------------------------------
 Lettura file CAL
-INPUT: ifstream &calfile
+INPUT: ifstream &calfile, bool Export_POS
 OUTPUT: vector <Animation_info> &Ani_header, vector < vector <AnimationCurveNode> > &Ani_curvenode
 ------------------------------------------------------------------------------------------------------------------*/
 
@@ -31,7 +31,7 @@ OUTPUT: vector <Animation_info> &Ani_header, vector < vector <AnimationCurveNode
 #include "ANIM/CAL_Functions.h"
 
 
-void CAL_Read (ifstream &calfile, vector <Animation_info> &Ani_header, vector < vector <AnimationCurveNode> > &Ani_curvenode)
+void CAL_Read (ifstream &calfile, vector <Animation_info> &Ani_header, vector < vector <AnimationCurveNode> > &Ani_curvenode, bool Export_POS)
 {
     CAL_HEADER cal_header;
     CAL_ANIM_POINTER_LIST cal_anim_pointer_list;
@@ -136,7 +136,7 @@ void CAL_Read (ifstream &calfile, vector <Animation_info> &Ani_header, vector < 
             {
                 Ani_curvenode[a][b].tX_flag = true;
                 calfile.seekg(cal_anim_raw_bones.Pointer + reading_offset);
-				if (b == 0 && Export_RootMotion && (Root.tX_flag || Root.rZ_flag))
+				if ((b == 0 && Export_RootMotion && (Root.tX_flag || Root.rZ_flag)) || (b == 0 && Export_POS))
 					Ani_curvenode[a][b].tX = CAL_Get_TRS_Keyframes_2(calfile, Ani_header[a].nFrames, 0.25f);
 				else
 					Ani_curvenode[a][b].tX = CAL_Get_TRS_Keyframes(calfile, Ani_header[a].nFrames, 0.25f);
@@ -146,7 +146,7 @@ void CAL_Read (ifstream &calfile, vector <Animation_info> &Ani_header, vector < 
             {
                 Ani_curvenode[a][b].tY_flag = true;
                 calfile.seekg(cal_anim_raw_bones.Pointer + reading_offset);
-				if (b == 0 && Export_RootMotion && (Root.tY_flag || Root.rZ_flag))
+				if ((b == 0 && Export_RootMotion && (Root.tY_flag || Root.rZ_flag)) || (b == 0 && Export_POS))
 					Ani_curvenode[a][b].tY = CAL_Get_TRS_Keyframes_2(calfile, Ani_header[a].nFrames, 0.25f);
 				else
 					Ani_curvenode[a][b].tY = CAL_Get_TRS_Keyframes(calfile, Ani_header[a].nFrames, 0.25f);
@@ -156,7 +156,7 @@ void CAL_Read (ifstream &calfile, vector <Animation_info> &Ani_header, vector < 
             {
                 Ani_curvenode[a][b].tZ_flag = true;
                 calfile.seekg(cal_anim_raw_bones.Pointer + reading_offset);
-                if (b == 0 && Export_RootMotion && Root.tZ_flag)
+                if ((b == 0 && Export_RootMotion && Root.tZ_flag) || (b == 0 && Export_POS))
 					Ani_curvenode[a][b].tZ = CAL_Get_TRS_Keyframes_2(calfile, Ani_header[a].nFrames, 0.25f);
 				else
 					Ani_curvenode[a][b].tZ = CAL_Get_TRS_Keyframes(calfile, Ani_header[a].nFrames, 0.25f);

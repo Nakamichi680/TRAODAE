@@ -102,7 +102,15 @@ bool UI_Startup (char **argv, IO_CLASS &IO)
 					ExportMode = 3;				// I blend shapes verranno esportati automaticamente, animazioni e modello in T-Pose su richiesta
 				}
 				else
-					ExportMode = 0;				// Se non viene trovata un'estensione valida verrà esportato tutto il possibile senza chiedere nulla
+				{
+					if (IO.chr_name[sz-4] == '.' && IO.chr_name[sz-3] == 'P' && IO.chr_name[sz-2] == 'O' && IO.chr_name[sz-1] == 'S')			// File in ingresso: POS
+					{
+						IO.chr_name = IO.chr_name.substr(0, sz-4);
+						ExportMode = 4;				// Animazioni e cutscene character root motion esportati automaticamente, blend shapes e modello in T-Pose su richiesta
+					}
+					else
+						ExportMode = 0;				// Se non viene trovata un'estensione valida verrà esportato tutto il possibile senza chiedere nulla
+				}
 			}
 		}
 	}
@@ -406,6 +414,66 @@ bool UI_Startup (char **argv, IO_CLASS &IO)
 				{
 					cout << "Y\n\n";
 					IO.Export_POS = true;
+					exit_loop = true;
+				}
+				if (user_input == 78 || user_input == 110)
+				{
+					cout << "N\n\n";
+					exit_loop = true;
+				}
+				if (!exit_loop)
+					cout << "\r";
+			} while (!exit_loop);
+		cout << " The following elements will be exported:\n\n";
+		if (IO.Export_CHR)
+			cout << " - T-Pose Model\n";
+		if (IO.Export_CAL)
+			cout << " - Animations\n";
+		if (IO.Export_POS)
+			cout << " - Cutscene character root motion\n";
+		if (IO.Export_TMT)
+			cout << " - Blend Shapes\n";
+		cout << "\n\n Press any key to continue or Escape to exit.\n";
+		user_input = getch();
+		if (user_input == 27)
+			return false;
+		else
+		{
+			if (user_input == 224 || user_input == 0)
+				getch();
+			return true;
+		}
+		break;
+
+	case(4):										// Priorità a POS e CAL, chiedi per CHR e TMT. ExportMode = 4
+		IO.Export_POS = true;
+		IO.Export_CAL = true;
+		do {
+			cout << " Would you like to export the T-pose model [Y/N]? ";
+			user_input = getch();
+			if (user_input == 89 || user_input == 121)
+			{
+				cout << "Y\n\n";
+				IO.Export_CHR = true;
+				exit_loop = true;
+			}
+			if (user_input == 78 || user_input == 110)
+			{
+				cout << "N\n\n";
+				exit_loop = true;
+			}
+			if (!exit_loop)
+				cout << "\r";
+		} while (!exit_loop);
+		exit_loop = false;
+		if (IO.TMT_exists)
+			do {
+				cout << " Would you like to export Blend Shapes [Y/N]? ";
+				user_input = getch();
+				if (user_input == 89 || user_input == 121)
+				{
+					cout << "Y\n\n";
+					IO.Export_TMT = true;
 					exit_loop = true;
 				}
 				if (user_input == 78 || user_input == 110)

@@ -182,6 +182,7 @@
     <ClCompile Include="CHAR\CHR_Read_Skeleton.cpp" />
     <ClCompile Include="CHAR\Skeleton_Bone_S.cpp" />
     <ClCompile Include="CHAR\Skeleton_Vertex_TS.cpp" />
+    <ClCompile Include="CPOS\POS_ApplyTransToAnimLayer.cpp" />
     <ClCompile Include="CPOS\POS_Read.cpp" />
     <ClCompile Include="FBX\FBX_Write_Animation.cpp" />
     <ClCompile Include="FBX\FBX_Write_AnimCurve_Subroutine.cpp" />
