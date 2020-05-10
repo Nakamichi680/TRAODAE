@@ -22,7 +22,8 @@ Copyright (c) Square Enix Ltd. Lara Croft and Tomb Raider are trademarks or regi
 
 #pragma once
 #define MAX 256
-const unsigned long long FBXframe1 = 1924423250;			// First frame (valore arbitrario del file FBX associato al frame numero 1)
+//const unsigned long long FBXframe1 = 1924423250;			// 24 fps
+const unsigned long long FBXframe1 = 1539538600;			// 30 fps: First frame (valore arbitrario del file FBX associato al frame numero 1)
 using namespace std;
 #include <stdio.h>
 #include <conio.h>
