@@ -67,7 +67,7 @@ void APB_Combine_AnimLayers (AnimationCurveNode *dest, AnimationCurveNode addend
 			for (unsigned int f = 0; f < dest->rX.KeyValueFloat.size(); f++)
 			{
 				dest->rX.KeyValueFloat[f] += addend.rX.KeyValueFloat[f];
-				//mathWrapAngle180(&dest->rX.KeyValueFloat[f]);
+				mathWrapAngle180(&dest->rX.KeyValueFloat[f]);
 			}
 		else
 		{
@@ -81,7 +81,7 @@ void APB_Combine_AnimLayers (AnimationCurveNode *dest, AnimationCurveNode addend
 			for (unsigned int f = 0; f < dest->rY.KeyValueFloat.size(); f++)
 			{
 				dest->rY.KeyValueFloat[f] += addend.rY.KeyValueFloat[f];
-				//mathWrapAngle180(&dest->rY.KeyValueFloat[f]);
+				mathWrapAngle180(&dest->rY.KeyValueFloat[f]);
 			}
 		else
 		{
@@ -95,7 +95,7 @@ void APB_Combine_AnimLayers (AnimationCurveNode *dest, AnimationCurveNode addend
 			for (unsigned int f = 0; f < dest->rZ.KeyValueFloat.size(); f++)
 			{
 				dest->rZ.KeyValueFloat[f] += addend.rZ.KeyValueFloat[f];
-				//mathWrapAngle180(&dest->rZ.KeyValueFloat[f]);
+				mathWrapAngle180(&dest->rZ.KeyValueFloat[f]);
 			}
 		else
 		{

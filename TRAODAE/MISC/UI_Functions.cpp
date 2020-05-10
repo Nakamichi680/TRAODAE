@@ -159,7 +159,7 @@ void UI_Title ()
 	cout << " บ                                                                                                                   บ\n";
 	cout << " บ" << dark_green << "  For any question, feel free to contact me on http://www.aspidetr.com/forum/ or http://www.tombraiderforums.com/  " << black << "บ\n";
 	cout << " ศอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ\n";
-	cout << dark_purple << "                                                                                                 v. 1.1    2018/03/11\n\n\n" << black;
+	cout << dark_purple << "                                                                                                 v. 1.2b   2020/05/10\n\n\n" << black;
 }
 
 
