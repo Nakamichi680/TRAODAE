@@ -46,47 +46,58 @@ void Calculate_Faces_Mesh1 (MESH1_CLASS &mesh1, vector < vector <unsigned short>
         }
 
         // Creazione lista facce
-        if (mesh1.arrOffset[el] % 2 == 0)		// Verifica se il punto d'inizio di ogni frammento dello strip è pari o dispari
-        {
-            for (int I = 0; I < (mesh1.arrEl_Ind[el] - 2); I++)
-                if (MESH1_Split_strip[I] != MESH1_Split_strip[I+1] &&						// Esclude le facce nulle
-                    MESH1_Split_strip[I] != MESH1_Split_strip[I+2] &&
-                    MESH1_Split_strip[I+1] != MESH1_Split_strip[I+2])
-                {
-                    if (I % 2 == 0)		// Se pari
-                    {
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I+2]);
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I+1]);
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I] ^ -1);		// XOR per formato FBX
-                    }
-                    else                // Se dispari
-                    {
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I]);
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I+1]);
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I+2] ^ -1);		// XOR per formato FBX
-                    }
-                }
-        }
-        else
-        {
-            for (int I = 0; I < (mesh1.arrEl_Ind[el] - 2); I++)
-                if (MESH1_Split_strip[I] != MESH1_Split_strip[I+1] &&						// Esclude le facce nulle
-                    MESH1_Split_strip[I] != MESH1_Split_strip[I+2] &&
-                    MESH1_Split_strip[I+1] != MESH1_Split_strip[I+2])
-                {
-                    if (I % 2 == 0)		// Se pari
-                    {
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I]);
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I+1]);
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I+2] ^ -1);     // XOR per formato FBX
-                    }
-                    else                // Se dispari
-                    {
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I+2]);
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I+1]);
-                        MESH1_FACES[el].push_back(MESH1_Split_strip[I] ^ -1);       // XOR per formato FBX
-                    }
-                }
-        }
+		if (mesh1.arrDraw_Mode[el] == 5)			// Se il Draw mode è uguale a 5 si tratta di un triangle strip
+		{
+			if (mesh1.arrOffset[el] % 2 == 0)		// Verifica se il punto d'inizio di ogni frammento dello strip è pari o dispari
+			{
+				for (int I = 0; I < (mesh1.arrEl_Ind[el] - 2); I++)
+					if (MESH1_Split_strip[I] != MESH1_Split_strip[I+1] &&						// Esclude le facce nulle
+						MESH1_Split_strip[I] != MESH1_Split_strip[I+2] &&
+						MESH1_Split_strip[I+1] != MESH1_Split_strip[I+2])
+					{
+						if (I % 2 == 0)		// Se pari
+						{
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I+2]);
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I+1]);
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I] ^ -1);		// XOR per formato FBX
+						}
+						else                // Se dispari
+						{
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I]);
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I+1]);
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I+2] ^ -1);		// XOR per formato FBX
+						}
+					}
+			}
+			else
+			{
+				for (int I = 0; I < (mesh1.arrEl_Ind[el] - 2); I++)
+					if (MESH1_Split_strip[I] != MESH1_Split_strip[I+1] &&						// Esclude le facce nulle
+						MESH1_Split_strip[I] != MESH1_Split_strip[I+2] &&
+						MESH1_Split_strip[I+1] != MESH1_Split_strip[I+2])
+					{
+						if (I % 2 == 0)		// Se pari
+						{
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I]);
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I+1]);
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I+2] ^ -1);     // XOR per formato FBX
+						}
+						else                // Se dispari
+						{
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I+2]);
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I+1]);
+							MESH1_FACES[el].push_back(MESH1_Split_strip[I] ^ -1);       // XOR per formato FBX
+						}
+					}
+			}
+		}
+		else										// Se il Draw mode non è 5 si tratta di una lista di facce esplicite
+            for (int I = 0; I < mesh1.arrEl_Ind[el];)
+            {
+                MESH1_FACES[el].push_back(MESH1_Split_strip[I+2]);
+                MESH1_FACES[el].push_back(MESH1_Split_strip[I+1]);
+                MESH1_FACES[el].push_back(MESH1_Split_strip[I] ^ -1);					// XOR per formato FBX
+                I += 3;
+            }
     }
 }
